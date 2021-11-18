@@ -112,15 +112,17 @@ CSEG SEGMENT PARA PUBLIC "CODE"
           RET 
     TRANSLATENUMBER ENDP 
     
-   DOTASK PROC NEAR 
-  MOV NUMBER, AX 
-  ADD NUMBER, 55 
-  JO OVERFLOWERR 
-  JMP ENDTASK 
-  OVERFLOWERR: 
-   MOV ERRORBOOL, 1 
-  ENDTASK: 
-   RET 
+    DOTASK PROC NEAR 
+        MOV NUMBER, AX 
+        ADD NUMBER, 55 
+        JO OVERFLOWERR 
+        JMP ENDTASK 
+        
+        OVERFLOWERR: 
+            MOV ERRORBOOL, 1 
+        
+        ENDTASK: 
+            RET 
    DOTASK ENDP 
     
    PRINTRESULT PROC NEAR 
@@ -147,7 +149,7 @@ CSEG SEGMENT PARA PUBLIC "CODE"
           PUSH DX 
           INC CX 
           TEST AX, AX 
-          NZ M2 
+          JNZ M2 
         
         M3: 
           POP AX 
